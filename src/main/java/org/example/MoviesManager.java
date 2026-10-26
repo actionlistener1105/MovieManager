@@ -9,7 +9,6 @@ public class MoviesManager {
 
     private Movie movie;
     private int maxCount = 5;
-    private Movie[] lastMovies;
     private Movie[] allMovies = new Movie[1];
 
     public MoviesManager(int maxCount){
@@ -31,6 +30,7 @@ public class MoviesManager {
     }
 
     public Movie[] findLast(){
+        Movie[] lastMovies;
         if (allMovies.length > maxCount){
             lastMovies = new Movie[maxCount];
             int index = 0;
