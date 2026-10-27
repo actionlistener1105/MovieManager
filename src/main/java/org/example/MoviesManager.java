@@ -7,51 +7,43 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MoviesManager {
 
-    private Movie movie;
     private int maxCount = 5;
-    private Movie[] allMovies = new Movie[1];
+    private Movie[] allMovies = new Movie[0];
 
-    public MoviesManager(int maxCount){
+    public MoviesManager(int maxCount) {
         this.maxCount = maxCount;
     }
 
-    public void addMovie(Movie movie){
-        if (allMovies[0] != null){
-            Movie[] temp = new Movie[allMovies.length + 1];
-            for(int i = 0; i < allMovies.length; i++) {
-                temp[i] = allMovies[i];
-            }
-            temp[temp.length - 1] = movie;
-            allMovies = temp;
+    public void addMovie(Movie movie) {
+        Movie[] temp = new Movie[allMovies.length + 1];
+
+        for (int i = 0; i < allMovies.length; i++) {
+            temp[i] = allMovies[i];
         }
-        else {
-            allMovies[0] = movie;
-        }
+
+        temp[temp.length - 1] = movie;
+        allMovies = temp;
     }
 
-    public Movie[] findLast(){
-        Movie[] lastMovies;
-        if (allMovies.length > maxCount){
-            lastMovies = new Movie[maxCount];
+    public Movie[] findLast() {
+        if (allMovies.length > maxCount) {
+            Movie[] lastMovies = new Movie[maxCount];
             int index = 0;
-            for(int i = allMovies.length - 1; i > allMovies.length - 1 - maxCount; i--){
+            for (int i = allMovies.length - 1; i > allMovies.length - 1 - maxCount; i--) {
                 lastMovies[index] = allMovies[i];
                 index++;
             }
             return lastMovies;
-        }
-        if(allMovies.length <= maxCount) {
+        } else {
             return findAll();
         }
-        return null;
     }
 
-    public Movie[] findAll(){
+    public Movie[] findAll() {
         Movie[] reversed = new Movie[allMovies.length];
-        for (int i = 0; i < reversed.length; i++){
-            reversed[i] = allMovies[allMovies.length -1 -i];
+        for (int i = 0; i < reversed.length; i++) {
+            reversed[i] = allMovies[allMovies.length - 1 - i];
         }
         return reversed;
     }
-
 }
